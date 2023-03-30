@@ -1,0 +1,10 @@
+# api version
+apiVersion: v1
+kind: Pod
+metadata:
+  name: posts
+spec:
+  containers:
+    # name of the docker container and the image id or tag
+    - name: posts
+      image: mihirvir09/posts:0.0.1

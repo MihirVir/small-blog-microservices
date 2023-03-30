@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comments-depl
+spec:
+  # number of pods we want to create running some particular image
+  replicas: 1
+  # we are telling deployment to find all the different pods with the label of pods
+  selector:
+    matchLabels:
+      app: comments
+  #template is where we define exact config of a pod that we want this deployment to create
+  template:
+    metadata:
+      labels:
+        app: comments
+    spec:
+      containers:
+        - name: comments
+          image: mihirvir09/comments
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comments-srv
+spec:
+  selector:
+    app: comments
+  type: ClusterIP
+  ports:
+    - name: comments
+      protocol: TCP
+      port: 4001
+      targetPort: 4001
