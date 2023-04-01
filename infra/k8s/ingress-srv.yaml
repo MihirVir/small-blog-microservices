@@ -10,6 +10,10 @@ spec:
   # to teach the ingress controller how to take incoming traffic and route them off to
   # different pods
   rules:
+    # ingress-nginx expects by default that you're going to host multiple
+    # apps at different domains so that's whats this host property is all abt
+    # it's about app hosted at post.com
+    # when we are going trick our local machine that posts.com is local host
     - host: posts.com
       http:
         paths:
@@ -20,5 +24,6 @@ spec:
                 name: posts-clusterip-srv
                 port:
                   number: 4000
+              # deprecated
               # serviceName: posts-clusterip-srv
               # servicePort: 4000
